@@ -1,0 +1,53 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Meu Projeto Django{% endblock %}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'ddproject\css\peraminho.css' %}">
+</head>
+<body>
+    <div class="container-fluid vh-100">
+        <div class="row h-100">
+            {% include 'shared/menu_principal.html' %} 
+
+            <main class="col-md-10 ml-auto p-4">
+                <header class="mb-4">
+                    {% block content_header %}
+                        <h2 class="mb-3">{% block main_title %}{% endblock %}</h2>
+                        {% block submenu %}
+                            <ul class="nav nav-tabs">
+                                <li class="nav-item">
+                                    <a class="nav-link active" href="#">Sub-Item 1</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Sub-Item 2</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Sub-Item 3</a>
+                                </li>
+                            </ul>
+                        {% endblock %}
+                    {% endblock %}
+                </header>
+
+                <div class="main-body parchment-paper p-4">
+                    {% block content %}
+                        {% endblock %}
+                </div>
+
+                <footer class="mt-4 text-center">
+                    <hr>
+                    <p>&copy; {% now "Y" %} Seu Projeto. Todos os direitos reservados.</p>
+                </footer>
+            </main>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

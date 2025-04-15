@@ -1,0 +1,31 @@
+{% extends 'base/base.html' %}
+
+{% block title %}Página de Pergaminho{% endblock %}
+
+{% block main_title %}Conteúdo Principal da Página{% endblock %}
+
+{% block submenu %}
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <a class="nav-link active" href="#">Seção A</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Seção B</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Seção C</a>
+        </li>
+    </ul>
+{% endblock %}
+
+{% block content %}
+    <p>Este é o conteúdo principal da página com a aparência de pergaminho.</p>
+    <p>Você pode adicionar aqui todo o texto, imagens e outros elementos que desejar.</p>
+    <p>Lembre-se que este corpo principal também tem um submenu no topo, que você pode personalizar para cada página.</p>
+    <ul>
+        <li>Item 1 da lista</li>
+        <li>Item 2 da lista</li>
+        <li>Item 3 da lista</li>
+    </ul>
+    <p>Use este bloco `content` para o conteúdo específico desta página.</p>
+{% endblock %}
