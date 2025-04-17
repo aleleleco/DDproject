@@ -21,8 +21,19 @@ class PersonagemForm(forms.ModelForm):
             'historia',
         ]
         widgets = {
-            'historia': forms.Textarea(attrs={'rows': 4}),
-            'idiomas': forms.CheckboxSelectMultiple,
+            'nome': forms.TextInput(attrs={'class': 'form-control'}),
+            'classe': forms.Select(attrs={'class': 'form-control'}),
+            'raca': forms.Select(attrs={'class': 'form-control'}),
+            'nivel': forms.NumberInput(attrs={'class': 'form-control'}),
+            'forca': forms.NumberInput(attrs={'class': 'form-control'}),
+            'destreza': forms.NumberInput(attrs={'class': 'form-control'}),
+            'inteligencia': forms.NumberInput(attrs={'class': 'form-control'}),
+            'sabedoria': forms.NumberInput(attrs={'class': 'form-control'}),
+            'carisma': forms.NumberInput(attrs={'class': 'form-control'}),
+            'pontos_vida_maxima': forms.NumberInput(attrs={'class': 'form-control'}),
+            'pontos_vida_atual': forms.NumberInput(attrs={'class': 'form-control'}),
+            'idiomas': forms.CheckboxSelectMultiple(attrs={'class': 'form-control'}),
+            'historia': forms.Textarea(attrs={'rows': 4, 'class': 'form-control'}),
         }
 
     def __init__(self, *args, **kwargs):
