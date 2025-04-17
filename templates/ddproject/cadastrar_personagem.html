@@ -1,0 +1,151 @@
+{% extends 'base/base.html' %}
+
+{% block title %}Cadastrar Personagem (Manual){% endblock %}
+
+{% block content %}
+  <div class="container mt-5">
+    <h1>Cadastrar Novo Personagem (Manual)</h1>
+    <form method="post">
+      {% csrf_token %}
+      {% if erros %}
+        <div class="alert alert-danger">
+          Por favor, corrija os erros abaixo:
+          <ul>
+            {% for campo, mensagem in erros.items %}
+              <li>{{ mensagem }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+      {% endif %}
+
+      <div class="form-group row">
+        <label for="nome" class="col-md-3 col-form-label">Nome:</label>
+        <div class="col-md-9">
+          <input type="text" class="form-control {% if erros.nome %}is-invalid{% endif %}" id="nome" name="nome" value="{{ dados.nome|default:'' }}">
+          {% if erros.nome %}<div class="invalid-feedback">{{ erros.nome }}</div>{% endif %}
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="classe" class="col-md-3 col-form-label">Classe:</label>
+        <div class="col-md-9">
+          <select class="form-control" id="classe" name="classe">
+            <option value="">---------</option>
+            {% for classe in classes %}
+              <option value="{{ classe.id }}" {% if dados.classe == classe.id|stringformat:'i' %}selected{% endif %}>{{ classe.nome }}</option>
+            {% endfor %}
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="raca" class="col-md-3 col-form-label">Raça:</label>
+        <div class="col-md-9">
+          <select class="form-control" id="raca" name="raca">
+            <option value="">---------</option>
+            {% for raca in racas %}
+              <option value="{{ raca.id }}" {% if dados.raca == raca.id|stringformat:'i' %}selected{% endif %}>{{ raca.nome }}</option>
+            {% endfor %}
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="nivel" class="col-md-3 col-form-label">Nível:</label>
+        <div class="col-md-9">
+          <input type="number" class="form-control {% if erros.nivel %}is-invalid{% endif %}" id="nivel" name="nivel" value="{{ dados.nivel|default:'1' }}">
+          {% if erros.nivel %}<div class="invalid-feedback">{{ erros.nivel }}</div>{% endif %}
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="forca" class="col-md-3 col-form-label">Força:</label>
+        <div class="col-md-3">
+          <input type="number" class="form-control {% if erros.forca %}is-invalid{% endif %}" id="forca" name="forca" value="{{ dados.forca|default:'' }}">
+          {% if erros.forca %}<div class="invalid-feedback">{{ erros.forca }}</div>{% endif %}
+        </div>
+        <label for="destreza" class="col-md-3 col-form-label">Destreza:</label>
+        <div class="col-md-3">
+          <input type="number" class="form-control {% if erros.destreza %}is-invalid{% endif %}" id="destreza" name="destreza" value="{{ dados.destreza|default:'' }}">
+          {% if erros.destreza %}<div class="invalid-feedback">{{ erros.destreza }}</div>{% endif %}
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="inteligencia" class="col-md-3 col-form-label">Inteligência:</label>
+        <div class="col-md-3">
+          <input type="number" class="form-control {% if erros.inteligencia %}is-invalid{% endif %}" id="inteligencia" name="inteligencia" value="{{ dados.inteligencia|default:'' }}">
+          {% if erros.inteligencia %}<div class="invalid-feedback">{{ erros.inteligencia }}</div>{% endif %}
+        </div>
+        <label for="sabedoria" class="col-md-3 col-form-label">Sabedoria:</label>
+        <div class="col-md-3">
+          <input type="number" class="form-control {% if erros.sabedoria %}is-invalid{% endif %}" id="sabedoria" name="sabedoria" value="{{ dados.sabedoria|default:'' }}">
+          {% if erros.sabedoria %}<div class="invalid-feedback">{{ erros.sabedoria }}</div>{% endif %}
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="carisma" class="col-md-3 col-form-label">Carisma:</label>
+        <div class="col-md-3">
+          <input type="number" class="form-control {% if erros.carisma %}is-invalid{% endif %}" id="carisma" name="carisma" value="{{ dados.carisma|default:'' }}">
+          {% if erros.carisma %}<div class="invalid-feedback">{{ erros.carisma }}</div>{% endif %}
+        </div>
+        <label for="pontos_vida_maxima" class="col-md-3 col-form-label">PV Máxima:</label>
+        <div class="col-md-3">
+          <input type="number" class="form-control {% if erros.pontos_vida_maxima %}is-invalid{% endif %}" id="pontos_vida_maxima" name="pontos_vida_maxima" value="{{ dados.pontos_vida_maxima|default:'' }}">
+          {% if erros.pontos_vida_maxima %}<div class="invalid-feedback">{{ erros.pontos_vida_maxima }}</div>{% endif %}
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="pontos_vida_atual" class="col-md-3 col-form-label">PV Atuais:</label>
+        <div class="col-md-3">
+          <input type="number" class="form-control {% if erros.pontos_vida_atual %}is-invalid{% endif %}" id="pontos_vida_atual" name="pontos_vida_atual" value="{{ dados.pontos_vida_atual|default:'' }}">
+          {% if erros.pontos_vida_atual %}<div class="invalid-feedback">{{ erros.pontos_vida_atual }}</div>{% endif %}
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="idiomas" class="col-md-3 col-form-label">Idiomas:</label>
+        <div class="col-md-9">
+          <div class="form-check">
+            {% for idioma in idiomas %}
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="idioma_{{ idioma.id }}" name="idiomas" value="{{ idioma.id }}"  >
+                <label class="form-check-label" for="idioma_{{ idioma.id }}">{{ idioma.nome }}</label>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="historia">História:</label>
+        <textarea class="form-control {% if erros.historia %}is-invalid{% endif %}" id="historia" name="historia" rows="4">{{ dados.historia|default:'' }}</textarea>
+        {% if erros.historia %}<div class="invalid-feedback">{{ erros.historia }}</div>{% endif %}
+      </div>
+
+      <button type="submit" class="btn btn-primary">Cadastrar Personagem</button>
+    </form>
+  </div>
+{% endblock %}
+
+<style>
+  .form-group.row .col-md-9 .form-check {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .form-group.row .col-md-9 .form-check-inline {
+    margin-right: 1em;
+    margin-bottom: 0.2em;
+  }
+
+  .form-group.row .col-md-9 .form-check-inline .form-check-label {
+    margin-left: 0.3em;
+  }
+
+  .form-group.row .col-md-9 .form-check-inline input[type="checkbox"] {
+    margin-right: 0.3em;
+  }
+</style>

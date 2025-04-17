@@ -1,0 +1,10 @@
+
+{% extends 'base/base.html' %}
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+<h4>{{ title }}</h4>
+{% for personagen in personagens %}
+ {{personagen.nome}}
+{% endfor %}
+    
+{% endblock %}

@@ -1,4 +1,5 @@
 {% load static %}
+{% load widget_tweaks %}
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -9,29 +10,33 @@
     <link rel="stylesheet" href="{% static 'ddproject\css\peraminho.css' %}">
 </head>
 <body>
+
     <div class="container-fluid vh-100">
         <div class="row h-100">
             {% include 'shared/menu_principal.html' %} 
-
             <main class="col-md-10 ml-auto p-4">
+                <div class="container mt-4">
+                    {% if messages %}
+                        <ul class="messages">
+                            {% for message in messages %}
+                                <li class="{{ message.tags }}">{{ message }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+            
+                </div>
+                {% if submenu %}
                 <header class="mb-4">
-                    {% block content_header %}
-                        <h2 class="mb-3">{% block main_title %}{% endblock %}</h2>
-                        {% block submenu %}
                             <ul class="nav nav-tabs">
+                                {% for menu, link in submenu.items %} 
                                 <li class="nav-item">
-                                    <a class="nav-link active" href="#">Sub-Item 1</a>
+                                    <a class="nav-link_sub" href="{% url link %}">{{menu}}</a>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">Sub-Item 2</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">Sub-Item 3</a>
-                                </li>
+                                {% endfor %}
                             </ul>
-                        {% endblock %}
-                    {% endblock %}
                 </header>
+
+                {% endif %}
 
                 <div class="main-body parchment-paper p-4">
                     {% block content %}
