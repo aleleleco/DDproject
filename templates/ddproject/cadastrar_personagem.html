@@ -1,0 +1,124 @@
+{% extends 'base/base.html' %}
+
+{% block title %}Cadastrar Personagem{% endblock %}
+
+{% block content %}
+  <div class="container mt-5">
+    <h1>Cadastrar Novo Personagem</h1>
+    <form method="post">
+      {% csrf_token %}
+      {% if form.errors %}
+        <div class="alert alert-danger">
+          Por favor, corrija os erros abaixo.
+        </div>
+      {% endif %}
+
+      <div class="form-group">
+        <label for="{{ form.nome.id_for_label }}">Nome:</label>
+        {{ form.nome }}
+        {% if form.nome.errors %}
+          <div class="alert alert-danger mt-1">{{ form.nome.errors }}</div>
+        {% endif %}
+      </div>
+
+      <div class="form-group">
+        <label for="{{ form.classe.id_for_label }}">Classe:</label>
+        {{ form.classe }}
+        {% if form.classe.errors %}
+          <div class="alert alert-danger mt-1">{{ form.classe.errors }}</div>
+        {% endif %}
+      </div>
+
+      <div class="form-group">
+        <label for="{{ form.raca.id_for_label }}">Raça:</label>
+        {{ form.raca }}
+        {% if form.raca.errors %}
+          <div class="alert alert-danger mt-1">{{ form.raca.errors }}</div>
+        {% endif %}
+      </div>
+
+      <div class="form-group">
+        <label for="{{ form.nivel.id_for_label }}">Nível:</label>
+        {{ form.nivel }}
+        {% if form.nivel.errors %}
+          <div class="alert alert-danger mt-1">{{ form.nivel.errors }}</div>
+        {% endif %}
+      </div>
+
+      <div class="form-group">
+        <label for="{{ form.forca.id_for_label }}">Força:</label>
+        {{ form.forca }}
+        {% if form.forca.errors %}
+          <div class="alert alert-danger mt-1">{{ form.forca.errors }}</div>
+        {% endif %}
+      </div>
+
+      <div class="form-group">
+        <label for="{{ form.destreza.id_for_label }}">Destreza:</label>
+        {{ form.destreza }}
+        {% if form.destreza.errors %}
+          <div class="alert alert-danger mt-1">{{ form.destreza.errors }}</div>
+        {% endif %}
+      </div>
+
+      <div class="form-group">
+        <label for="{{ form.inteligencia.id_for_label }}">Inteligência:</label>
+        {{ form.inteligencia }}
+        {% if form.inteligencia.errors %}
+          <div class="alert alert-danger mt-1">{{ form.inteligencia.errors }}</div>
+        {% endif %}
+      </div>
+
+      <div class="form-group">
+        <label for="{{ form.sabedoria.id_for_label }}">Sabedoria:</label>
+        {{ form.sabedoria }}
+        {% if form.sabedoria.errors %}
+          <div class="alert alert-danger mt-1">{{ form.sabedoria.errors }}</div>
+        {% endif %}
+      </div>
+
+      <div class="form-group">
+        <label for="{{ form.carisma.id_for_label }}">Carisma:</label>
+        {{ form.carisma }}
+        {% if form.carisma.errors %}
+          <div class="alert alert-danger mt-1">{{ form.carisma.errors }}</div>
+        {% endif %}
+      </div>
+
+      <div class="form-group">
+        <label for="{{ form.pontos_vida_maxima.id_for_label }}">Pontos de Vida Máxima:</label>
+        {{ form.pontos_vida_maxima }}
+        {% if form.pontos_vida_maxima.errors %}
+          <div class="alert alert-danger mt-1">{{ form.pontos_vida_maxima.errors }}</div>
+        {% endif %}
+      </div>
+
+      <div class="form-group">
+        <label for="{{ form.pontos_vida_atual.id_for_label }}">Pontos de Vida Atuais:</label>
+        {{ form.pontos_vida_atual }}
+        {% if form.pontos_vida_atual.errors %}
+          <div class="alert alert-danger mt-1">{{ form.pontos_vida_atual.errors }}</div>
+        {% endif %}
+      </div>
+
+      <div class="form-group">
+        <label for="{{ form.idiomas.id_for_label }}">Idiomas:</label>
+        {{ form.idiomas }}
+        {% if form.idiomas.errors %}
+          <div class="alert alert-danger mt-1">{{ form.idiomas.errors }}</div>
+        {% endif %}
+        <small class="form-text text-muted">Segure Ctrl (ou Cmd no Mac) para selecionar múltiplos idiomas.</small>
+      </div>
+
+      <div class="form-group">
+        <label for="{{ form.historia.id_for_label }}">História:</label>
+        {{ form.historia }}
+        {% if form.historia.errors %}
+          <div class="alert alert-danger mt-1">{{ form.historia.errors }}</div>
+        {% endif %}
+      </div>
+
+      <button type="submit" class="btn btn-primary">Cadastrar Personagem</button>
+    </form>
+  </div>
+{% endblock %}

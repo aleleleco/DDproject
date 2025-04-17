@@ -4,7 +4,17 @@
     <div class="banner mb-3">
         <img src="{% static 'ddproject/images/baner1.jpg' %}" alt="Banner" class="img-fluid">
     </div>
-    <p>Informações Gerais do Site aqui.</p>
+    {% if usuario %}
+    <div>
+        <p>Nome: {{ usuario.nome_completo }}</p>
+        <ul>
+            <li>{{ usuario.nome_usuario }}</li>
+            <li>{{ usuario.email_usuario }}</li>
+        </ul>
+
+    </div>
+  {% endif %}
+
     <hr>
     <h3>Menu content</h3>
     <ul class="nav flex-column">
@@ -12,7 +22,7 @@
             <a class="nav-link active" href="{% url 'home' %}">inicio</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#">Seção 1234</a>
+            <a class="nav-link" href="{% url 'lista_personagens'%}">Personagens</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="#">Seção 2</a>
